@@ -26,7 +26,10 @@ class ScanPage extends StatelessWidget {
                   version: QrVersions.auto,
                   size: 300.0,
                 )
-              : Text("Please create a card."),
+              : Text(
+                  "Please create a card",
+                  style: TextStyle(fontSize: 16),
+                ),
         ),
       ),
     );

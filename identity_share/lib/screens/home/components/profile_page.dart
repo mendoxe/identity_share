@@ -10,14 +10,24 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
       valueListenable: Hive.box("cards").listenable(),
-      builder: (context, value, child) => ListView.builder(
-        itemCount: Hive.box("cards").length,
-        itemBuilder: (context, index) => ContactCardWidget(
-          card: Hive.box("cards").getAt(index),
-          myCard: true,
-          index: index,
-        ),
-      ),
+      builder: (context, value, child) => Hive.box("cards").length > 0
+          ? ListView.builder(
+              itemCount: Hive.box("cards").length,
+              itemBuilder: (context, index) => ContactCardWidget(
+                card: Hive.box("cards").getAt(index),
+                myCard: true,
+                index: index,
+              ),
+            )
+          : Center(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(maxWidth: 200),
+                child: Text(
+                  "Create card by hitting the orange button with +",
+                  style: TextStyle(fontSize: 16),
+                ),
+              ),
+            ),
     );
   }
 }
