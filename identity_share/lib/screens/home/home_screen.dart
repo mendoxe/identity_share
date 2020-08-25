@@ -111,6 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
     ContactCard card = ContactCard.fromJson(json);
     Hive.box("contacts").add(card);
     context.read<HomeProvider>().selectCard(card);
+    context.read<HomeProvider>().setMyCard(false);
     Router.sailor("/contactDetail");
   }
 

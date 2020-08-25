@@ -25,8 +25,10 @@ class _ContactDetailState extends State<ContactDetail> {
     card = context.watch<HomeProvider>().selectedCard;
     my = context.watch<HomeProvider>().myCard;
     index = context.watch<HomeProvider>().index;
-    fav = Hive.box("favorite").getAt(0) == card;
-    print(fav);
+    fav = false;
+    if (Hive.box("favorite").isNotEmpty) {
+      fav = Hive.box("favorite").getAt(0) == card;
+    }
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(

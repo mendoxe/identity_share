@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "729180708304",
+    "firebase_url": "https://idshare-d4f93.firebaseio.com",
+    "project_id": "idshare-d4f93",
+    "storage_bucket": "idshare-d4f93.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729180708304:android:cca0c1cfe844fad4e0add5",
+        "android_client_info": {
+          "package_name": "com.example.identity_share"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729180708304-t4ps0rj6rgjkblnsimff388hbu4kr3aj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA01xLAfmO-_h-cGkdxeT_YO3ch6ZIijGs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729180708304-t4ps0rj6rgjkblnsimff388hbu4kr3aj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
