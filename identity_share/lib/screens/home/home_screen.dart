@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return Builder(
           builder: (ctx) => FloatingActionButton(
             child: Icon(
-              Icons.camera,
+              Icons.photo_camera,
               size: 30,
             ),
             onPressed: () => _scan(ctx),
@@ -68,15 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         );
 
       case 1:
-        return Builder(
-          builder: (ctx) => FloatingActionButton(
-            child: Icon(
-              Icons.camera,
-              size: 30,
-            ),
-            onPressed: () => _scan(ctx),
-          ),
-        );
+        return const SizedBox.shrink();
 
       case 2:
         return Builder(
