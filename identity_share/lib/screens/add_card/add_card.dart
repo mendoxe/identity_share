@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:identity_share/model/contact.dart';
 import 'package:identity_share/model/contact_card.dart';
+import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/utils/router.dart';
+import 'package:identity_share/widgets/contact_pick_dialog.dart';
 import 'package:identity_share/widgets/form_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -22,12 +24,14 @@ class _AddCardState extends State<AddCard> {
   final TextEditingController instagramController = TextEditingController();
   final TextEditingController twitterController = TextEditingController();
   final TextEditingController snapchatController = TextEditingController();
+  final TextEditingController tagController = TextEditingController();
+  // List<Widget> contacts = [];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add new card"),
+        title: Text(Resources.addNewCard),
       ),
       body: Form(
         key: _formKey,
@@ -36,44 +40,68 @@ class _AddCardState extends State<AddCard> {
             children: [
               MFormField(
                 validator: (value) {
-                  if (value.isEmpty) return 'Please enter some text';
+                  if (value.isEmpty) return Resources.pleaseEnterSomeText;
                   return null;
                 },
                 optional: false,
                 controller: nameController,
                 icon: Icon(Icons.person),
-                hintText: "Name",
+                hintText: Resources.name,
               ),
               MFormField(
-                icon: Icon(Icons.email),
-                hintText: "Email",
-                controller: emailController,
+                icon: Icon(Icons.bookmark),
+                hintText: Resources.tag,
+                controller: tagController,
               ),
               MFormField(
                 icon: Icon(Icons.phone),
-                hintText: "Phone",
+                hintText: Resources.phone,
                 controller: phoneController,
               ),
               MFormField(
+                icon: Icon(Icons.email),
+                hintText: Resources.email,
+                controller: emailController,
+              ),
+              MFormField(
+                icon: Icon(MdiIcons.facebook),
+                hintText: Resources.facebook,
+                controller: facebookController,
+              ),
+              MFormField(
                 icon: Icon(MdiIcons.instagram),
-                hintText: "Instagram",
+                hintText: Resources.instagram,
                 controller: instagramController,
               ),
               MFormField(
                 icon: Icon(MdiIcons.twitter),
-                hintText: "Twitter",
+                hintText: Resources.twitter,
                 controller: twitterController,
               ),
               MFormField(
                 icon: Icon(MdiIcons.snapchat),
-                hintText: "Snapchat",
+                hintText: Resources.snapchat,
                 controller: snapchatController,
               ),
-              MFormField(
-                icon: Icon(MdiIcons.facebook),
-                hintText: "Facebook",
-                controller: facebookController,
-              ),
+              // Container(
+              //   height: (contacts.length * 105).toDouble(),
+              //   child: ListView.builder(
+              //     itemCount: contacts.length,
+              //     itemBuilder: (context, index) => contacts[index],
+              //   ),
+              // ),
+              // RaisedButton.icon(
+              //   color: Theme.of(context).accentColor,
+              //   onPressed: () => newContact(context),
+              //   icon: Icon(Icons.add, color: Colors.white),
+              //   label: Text(
+              //     Resources.add,
+              //     style: TextStyle(
+              //       color: Colors.white,
+              //       fontSize: 16,
+              //     ),
+              //   ),
+              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: RaisedButton(
@@ -82,7 +110,7 @@ class _AddCardState extends State<AddCard> {
                   color: Theme.of(context).primaryColor,
                   onPressed: () => _submitted(),
                   child: Text(
-                    'Submit',
+                    Resources.submit,
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -93,6 +121,110 @@ class _AddCardState extends State<AddCard> {
       ),
     );
   }
+
+  // void newContact(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     child: ContactPickDialog(),
+  //   ).then((value) {
+  //     print(value);
+  //     switch (value) {
+  //       case "facebook":
+  //         setState(() {
+  //           contacts.add(
+  //             MFormField(
+  //               icon: Icon(MdiIcons.facebook),
+  //               hintText: Resources.facebook,
+  //               controller: facebookController,
+  //             ),
+  //           );
+  //         });
+  //         break;
+
+  //       case "instagram":
+  //         setState(() {
+  //           contacts.add(
+  //             MFormField(
+  //               icon: Icon(MdiIcons.instagram),
+  //               hintText: Resources.instagram,
+  //               controller: instagramController,
+  //             ),
+  //           );
+  //         });
+  //         break;
+
+  //       case "phone":
+  //         setState(() {
+  //           contacts.add(
+  //             MFormField(
+  //               icon: Icon(Icons.phone),
+  //               hintText: Resources.phone,
+  //               controller: phoneController,
+  //             ),
+  //           );
+  //         });
+  //         break;
+
+  //       case "email":
+  //         setState(() {
+  //           contacts.add(
+  //             MFormField(
+  //               icon: Icon(Icons.email),
+  //               hintText: Resources.email,
+  //               controller: emailController,
+  //             ),
+  //           );
+  //         });
+  //         break;
+
+  //       // case "other":
+  //       //   setState(() {
+  //       //     contacts.add(
+  //       //       Row(
+  //       //         children: [
+  //       //           MFormField(
+  //       //             hintText: Resources.other,
+  //       //             controller: TextEditingController(),
+  //       //           ),
+  //       //           MFormField(
+  //       //             hintText: Resources.other,
+  //       //             controller: TextEditingController(),
+  //       //           ),
+  //       //         ],
+  //       //       ),
+  //       //     );
+  //       //   });
+  //       // break;
+
+  //       case "twitter":
+  //         setState(() {
+  //           contacts.add(
+  //             MFormField(
+  //               icon: Icon(MdiIcons.twitter),
+  //               hintText: Resources.twitter,
+  //               controller: twitterController,
+  //             ),
+  //           );
+  //         });
+  //         break;
+
+  //       case "snapchat":
+  //         setState(() {
+  //           contacts.add(
+  //             MFormField(
+  //               icon: Icon(MdiIcons.snapchat),
+  //               hintText: Resources.snapchat,
+  //               controller: snapchatController,
+  //             ),
+  //           );
+  //         });
+  //         break;
+
+  //       default:
+  //         break;
+  //     }
+  //   });
+  // }
 
   void _submitted() {
     if (_formKey.currentState.validate()) {
@@ -122,7 +254,11 @@ class _AddCardState extends State<AddCard> {
         contacts.add(Contact("snapchat", snapchatController.value.text));
       }
       print(contacts);
-      Hive.box("cards").add(ContactCard(contacts, nameController.value.text));
+      Hive.box("cards").add(ContactCard(
+        contacts,
+        nameController.value.text,
+        tagController.value.text ?? "",
+      ));
       if (Hive.box("favorite").isEmpty) {
         Hive.box("favorite").add(Hive.box("cards").getAt(0));
       }

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:identity_share/model/contact_card.dart';
 import 'package:identity_share/provider/home_provider.dart';
+import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/utils/router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -23,29 +24,64 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int index = 0;
-  List<String> titles = ["Scan", "Contacts", "Profile"];
+  List<String> titles = [Resources.scan, Resources.contacts, Resources.profile];
+  List<DropdownMenuItem> dropDownItems = [
+    const DropdownMenuItem(
+      value: "EN",
+      child: const Text("EN"),
+    ),
+    const DropdownMenuItem(
+      value: "CZ",
+      child: const Text("CZ"),
+    ),
+  ];
+  String dropdownValue = "EN";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[index]),
+        actions: index == 2
+            ? [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: DropdownButton(
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    iconEnabledColor: Colors.white,
+                    dropdownColor: Colors.deepPurple,
+                    items: dropDownItems,
+                    value: dropdownValue,
+                    onChanged: (value) {
+                      Resources().init(getLang(value));
+                      setState(() {
+                        dropdownValue = value;
+                      });
+                    },
+                  ),
+                ),
+              ]
+            : [],
       ),
       body: _body(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: index,
         onTap: (newIndex) => _changePage(newIndex),
         items: [
-          const BottomNavigationBarItem(
-            title: Text("Scan"),
+          BottomNavigationBarItem(
+            title: Text(Resources.scan),
             icon: Icon(MdiIcons.qrcode),
           ),
-          const BottomNavigationBarItem(
-            title: Text("Contacts"),
+          BottomNavigationBarItem(
+            title: Text(Resources.contacts),
             icon: Icon(Icons.contacts),
           ),
-          const BottomNavigationBarItem(
-            title: Text("Profile"),
+          BottomNavigationBarItem(
+            title: Text(Resources.profile),
             icon: Icon(Icons.person),
           ),
         ],
@@ -97,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
     } catch (e) {
       log(e.toString());
       Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text("Something went wrong!")));
+          .showSnackBar(SnackBar(content: Text(Resources.smthngWentWrong)));
       return;
     }
     ContactCard card = ContactCard.fromJson(json);

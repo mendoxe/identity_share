@@ -42,7 +42,7 @@ class _ContactDetailState extends State<ContactDetail> {
                     fav ? Icons.star : Icons.star_border,
                     color: Colors.white,
                   ),
-                  onPressed: () => _fav(),
+                  onPressed: () => _fav(context),
                 )
               : const SizedBox.shrink(),
           IconButton(
@@ -106,11 +106,12 @@ class _ContactDetailState extends State<ContactDetail> {
     Router.sailor.pop();
   }
 
-  void _fav() {
+  void _fav(BuildContext context) {
     if (fav) return;
     setState(() {
       Hive.box("favorite").putAt(0, card);
       fav = true;
+      context.read<HomeProvider>().favCard(card);
     });
   }
 }

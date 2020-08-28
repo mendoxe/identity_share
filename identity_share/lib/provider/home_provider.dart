@@ -3,10 +3,13 @@ import 'package:identity_share/model/contact_card.dart';
 
 class HomeProvider extends ChangeNotifier {
   ContactCard _selectedCard;
+  ContactCard _fav;
   bool _myCard;
   int _index;
 
   ContactCard get selectedCard => _selectedCard;
+
+  ContactCard get fav => _fav;
 
   bool get myCard => _myCard;
 
@@ -14,6 +17,11 @@ class HomeProvider extends ChangeNotifier {
 
   void selectCard(ContactCard card) {
     _selectedCard = card;
+    notifyListeners();
+  }
+
+  void favCard(ContactCard card) {
+    _fav = card;
     notifyListeners();
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/widgets/contact_card_widget.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -22,7 +23,7 @@ class ContactsPage extends StatelessWidget {
               )
             : Center(
                 child: Text(
-                  "No contacts stored",
+                  Resources.noContactsStored,
                   style: TextStyle(fontSize: 16),
                 ),
               ),

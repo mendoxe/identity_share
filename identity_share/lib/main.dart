@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:identity_share/model/contact.dart';
 import 'package:identity_share/model/contact_card.dart';
 import 'package:identity_share/provider/home_provider.dart';
+import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/utils/router.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +23,10 @@ void main() async {
   await Hive.openBox("contacts");
   await Hive.openBox("cards");
   await Hive.openBox("favorite");
+  await Hive.openBox("preferences");
+  // Hive.deleteBoxFromDisk("contacts");
+  // Hive.deleteBoxFromDisk("cards");
+  // Hive.deleteBoxFromDisk("favorite");
 
   Router.createRoutes();
   runApp(
@@ -42,6 +47,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    var lang = Hive.box("preferences").get("lang");
+    Resources().init(getLang(lang) ?? Language.EN);
     super.initState();
   }
 

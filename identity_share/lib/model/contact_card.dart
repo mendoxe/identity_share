@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:identity_share/model/contact.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -11,8 +12,10 @@ class ContactCard {
   final String name;
   @HiveField(1)
   List<Contact> contacts;
+  @HiveField(3)
+  String tag;
 
-  ContactCard(this.contacts, this.name);
+  ContactCard(this.contacts, this.name, this.tag);
 
   factory ContactCard.fromJson(Map<String, dynamic> json) =>
       _$ContactCardFromJson(json);

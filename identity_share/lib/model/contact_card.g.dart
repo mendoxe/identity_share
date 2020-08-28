@@ -19,17 +19,20 @@ class ContactCardAdapter extends TypeAdapter<ContactCard> {
     return ContactCard(
       (fields[1] as List)?.cast<Contact>(),
       fields[0] as String,
+      fields[3] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, ContactCard obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.contacts);
+      ..write(obj.contacts)
+      ..writeByte(3)
+      ..write(obj.tag);
   }
 
   @override
@@ -54,6 +57,7 @@ ContactCard _$ContactCardFromJson(Map<String, dynamic> json) {
             e == null ? null : Contact.fromJson(e as Map<String, dynamic>))
         ?.toList(),
     json['name'] as String,
+    json['tag'] as String,
   );
 }
 
@@ -61,4 +65,5 @@ Map<String, dynamic> _$ContactCardToJson(ContactCard instance) =>
     <String, dynamic>{
       'name': instance.name,
       'contacts': instance.contacts?.map((e) => e?.toJson())?.toList(),
+      'tag': instance.tag,
     };

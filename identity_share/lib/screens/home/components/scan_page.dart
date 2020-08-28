@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:identity_share/model/contact_card.dart';
+import 'package:identity_share/utils/resources.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -27,7 +28,7 @@ class ScanPage extends StatelessWidget {
                   size: 300.0,
                 )
               : Text(
-                  "Please create a card",
+                  Resources.pleaseCreateCard,
                   style: TextStyle(fontSize: 16),
                 ),
         ),

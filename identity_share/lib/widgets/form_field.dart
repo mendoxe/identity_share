@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:identity_share/utils/resources.dart';
 
 class MFormField extends StatelessWidget {
   const MFormField({
     Key key,
-    @required this.icon,
+    this.icon,
     @required this.hintText,
     this.validator,
     this.optional = true,
@@ -24,8 +25,8 @@ class MFormField extends StatelessWidget {
         controller: controller,
         validator: validator,
         decoration: InputDecoration(
-          helperText: !optional ? "Required" : null,
-          prefixIcon: icon,
+          helperText: !optional ? Resources.rrequired : null,
+          prefixIcon: icon ?? null,
           hintText: hintText,
           hintStyle: TextStyle(color: Colors.grey),
         ),

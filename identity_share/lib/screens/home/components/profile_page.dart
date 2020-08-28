@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/widgets/contact_card_widget.dart';
 
 class ProfilePage extends StatelessWidget {
@@ -23,7 +24,7 @@ class ProfilePage extends StatelessWidget {
               child: ConstrainedBox(
                 constraints: BoxConstraints(maxWidth: 200),
                 child: Text(
-                  "Create card by hitting the orange button with +",
+                  Resources.createCardBy,
                   style: TextStyle(fontSize: 16),
                 ),
               ),
