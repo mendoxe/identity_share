@@ -27,6 +27,7 @@ class HomeController {
     Hive.box("contacts").add(card);
     context.read<HomeProvider>().selectCard(card);
     context.read<HomeProvider>().setMyCard(false);
+    context.read<HomeProvider>().isPreview(true);
     Router.sailor("/contactDetail");
   }
 

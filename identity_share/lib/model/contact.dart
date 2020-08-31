@@ -58,7 +58,48 @@ class Contact {
     if (type.contains("snapchat")) {
       icon = Icon(
         MdiIcons.snapchat,
-        color: Colors.yellow,
+        color: Colors.yellow[600],
+      );
+    }
+    if (type.contains("youtube")) {
+      icon = Icon(
+        MdiIcons.youtube,
+        color: Colors.red,
+      );
+    }
+    if (type.contains("wechat")) {
+      icon = Icon(
+        MdiIcons.wechat,
+        color: Colors.green,
+      );
+    }
+    if (type.contains("web")) {
+      icon = Icon(
+        MdiIcons.web,
+      );
+    }
+    if (type.contains("address")) {
+      icon = Icon(
+        Icons.location_on,
+        color: Colors.lightGreenAccent[700],
+      );
+    }
+    if (type.contains("company")) {
+      icon = Icon(
+        Icons.business,
+        color: Colors.blueAccent,
+      );
+    }
+    if (type.contains("tiktok")) {
+      icon = Icon(
+        MdiIcons.music,
+        color: Colors.orange,
+      );
+    }
+    if (type.contains("other")) {
+      icon = Icon(
+        Icons.more_horiz,
+        color: Colors.black,
       );
     }
     return icon ?? Icon(Icons.ac_unit);

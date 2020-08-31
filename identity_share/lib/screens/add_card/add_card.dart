@@ -24,6 +24,13 @@ class _AddCardState extends State<AddCard> {
   final TextEditingController twitterController = TextEditingController();
   final TextEditingController snapchatController = TextEditingController();
   final TextEditingController tagController = TextEditingController();
+  final TextEditingController wechatController = TextEditingController();
+  final TextEditingController youtubeController = TextEditingController();
+  final TextEditingController tiktokController = TextEditingController();
+  final TextEditingController webController = TextEditingController();
+  final TextEditingController companyController = TextEditingController();
+  final TextEditingController addressController = TextEditingController();
+  final TextEditingController otherController = TextEditingController();
   // List<Widget> contacts = [];
 
   @override
@@ -82,6 +89,40 @@ class _AddCardState extends State<AddCard> {
                 hintText: Resources.snapchat,
                 controller: snapchatController,
               ),
+              MFormField(
+                icon: Icon(MdiIcons.wechat),
+                hintText: Resources.wechat,
+                controller: wechatController,
+              ),
+              MFormField(
+                icon: Icon(MdiIcons.youtube),
+                hintText: Resources.youtube,
+                controller: youtubeController,
+              ),
+              MFormField(
+                icon: Icon(MdiIcons.web),
+                hintText: Resources.web,
+                controller: webController,
+              ),
+              MFormField(
+                  icon: Icon(Icons.location_on),
+                  hintText: Resources.address,
+                  controller: addressController),
+              MFormField(
+                icon: Icon(Icons.business),
+                hintText: Resources.company,
+                controller: companyController,
+              ),
+              MFormField(
+                icon: Icon(MdiIcons.music),
+                hintText: Resources.tiktok,
+                controller: tiktokController,
+              ),
+              MFormField(
+                icon: Icon(Icons.more_horiz),
+                hintText: Resources.other,
+                controller: otherController,
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: RaisedButton(
@@ -128,6 +169,33 @@ class _AddCardState extends State<AddCard> {
       if (snapchatController.value.text != null &&
           snapchatController.value.text != "") {
         contacts.add(Contact("snapchat", snapchatController.value.text));
+      }
+      if (wechatController.value.text != null &&
+          wechatController.value.text != "") {
+        contacts.add(Contact("wechat", wechatController.value.text));
+      }
+      if (youtubeController.value.text != null &&
+          youtubeController.value.text != "") {
+        contacts.add(Contact("youtube", youtubeController.value.text));
+      }
+      if (webController.value.text != null && webController.value.text != "") {
+        contacts.add(Contact("web", webController.value.text));
+      }
+      if (addressController.value.text != null &&
+          addressController.value.text != "") {
+        contacts.add(Contact("address", addressController.value.text));
+      }
+      if (companyController.value.text != null &&
+          companyController.value.text != "") {
+        contacts.add(Contact("company", companyController.value.text));
+      }
+      if (tiktokController.value.text != null &&
+          tiktokController.value.text != "") {
+        contacts.add(Contact("tiktok", tiktokController.value.text));
+      }
+      if (otherController.value.text != null &&
+          otherController.value.text != "") {
+        contacts.add(Contact("other", otherController.value.text));
       }
       print(contacts);
       Hive.box("cards").add(ContactCard(

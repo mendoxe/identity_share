@@ -23,6 +23,12 @@ class Resources {
   static String tag;
   static String add;
   static String other;
+  static String wechat;
+  static String youtube;
+  static String tiktok;
+  static String address;
+  static String web;
+  static String company;
 
   void init(Language lang) {
     Hive.box("preferences").put("lang", langToString(lang));
@@ -50,6 +56,12 @@ class Resources {
         submit = 'Submit';
         tag = "tag";
         add = "add";
+        wechat = "WeChat";
+        youtube = "YouTube";
+        tiktok = "TikTok";
+        address = "Adresa";
+        web = "Web";
+        company = "Společnost";
         return;
 
       case Language.EN:
@@ -75,6 +87,12 @@ class Resources {
         submit = 'Submit';
         tag = "tag";
         add = "Přidat";
+        wechat = "WeChat";
+        youtube = "YouTube";
+        tiktok = "TikTok";
+        address = "Address";
+        web = "Web";
+        company = "Company";
         return;
     }
   }

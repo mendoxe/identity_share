@@ -36,6 +36,7 @@ class ContactCardWidget extends StatelessWidget {
           context.read<HomeProvider>().selectCard(card);
           context.read<HomeProvider>().setMyCard(myCard);
           context.read<HomeProvider>().setIndex(index);
+          context.read<HomeProvider>().isPreview(false);
           Router.sailor("/contactDetail");
         },
         child: Card(

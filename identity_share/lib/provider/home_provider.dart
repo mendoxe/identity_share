@@ -6,6 +6,9 @@ class HomeProvider extends ChangeNotifier {
   ContactCard _fav;
   bool _myCard;
   int _index;
+  bool _preview;
+
+  bool get preview => _preview;
 
   ContactCard get selectedCard => _selectedCard;
 
@@ -14,6 +17,11 @@ class HomeProvider extends ChangeNotifier {
   bool get myCard => _myCard;
 
   int get index => _index;
+
+  void isPreview(bool bl) {
+    _preview = bl;
+    notifyListeners();
+  }
 
   void selectCard(ContactCard card) {
     _selectedCard = card;

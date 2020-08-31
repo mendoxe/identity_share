@@ -19,9 +19,11 @@ class _ContactDetailState extends State<ContactDetail> {
   ContactCard card;
   int index;
   bool my;
+  bool preview;
 
   @override
   Widget build(BuildContext context) {
+    preview = context.watch<HomeProvider>().preview ?? false;
     card = context.watch<HomeProvider>().selectedCard;
     my = context.watch<HomeProvider>().myCard;
     index = context.watch<HomeProvider>().index;
@@ -35,21 +37,28 @@ class _ContactDetailState extends State<ContactDetail> {
           icon: Icon(Icons.arrow_back_ios),
           onPressed: () => Router.sailor.pop(),
         ),
-        actions: [
-          my
-              ? IconButton(
-                  icon: Icon(
-                    fav ? Icons.star : Icons.star_border,
-                    color: Colors.white,
-                  ),
-                  onPressed: () => _fav(context),
-                )
-              : const SizedBox.shrink(),
-          IconButton(
-            icon: Icon(Icons.delete, color: Colors.white),
-            onPressed: () => _delete(my),
-          ),
-        ],
+        actions: preview
+            ? [
+                IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () => _edit(),
+                ),
+              ]
+            : [
+                my
+                    ? IconButton(
+                        icon: Icon(
+                          fav ? Icons.star : Icons.star_border,
+                          color: Colors.white,
+                        ),
+                        onPressed: () => _fav(context),
+                      )
+                    : const SizedBox.shrink(),
+                IconButton(
+                  icon: Icon(Icons.delete, color: Colors.white),
+                  onPressed: () => _delete(my),
+                ),
+              ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,6 +98,8 @@ class _ContactDetailState extends State<ContactDetail> {
       ),
     );
   }
+
+  void _edit() {}
 
   void _delete(bool my) {
     if (my) {
