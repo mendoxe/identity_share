@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
+import 'package:identity_share/controller/home_controller.dart';
 import 'package:identity_share/model/contact_card.dart';
 import 'package:identity_share/provider/home_provider.dart';
 import 'package:identity_share/utils/resources.dart';
@@ -42,30 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(titles[index]),
-        actions: index == 2
-            ? [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: DropdownButton(
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    iconEnabledColor: Colors.white,
-                    dropdownColor: Colors.deepPurple,
-                    items: dropDownItems,
-                    value: dropdownValue,
-                    onChanged: (value) {
-                      Resources().init(getLang(value));
-                      setState(() {
-                        dropdownValue = value;
-                      });
-                    },
-                  ),
-                ),
-              ]
-            : [],
+        actions: _getActions(context),
       ),
       body: _body(),
       bottomNavigationBar: BottomNavigationBar(
@@ -90,6 +68,48 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  List<Widget> _getActions(BuildContext context) {
+    switch (index) {
+      case 0:
+        return [
+          IconButton(
+            icon: Icon(Icons.help_outline, color: Colors.white),
+            onPressed: () => HomeController().help(context),
+          ),
+        ];
+
+      case 1:
+        return [];
+
+      case 2:
+        return [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownButton(
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+              iconEnabledColor: Colors.white,
+              dropdownColor: Colors.deepPurple,
+              items: dropDownItems,
+              value: dropdownValue,
+              onChanged: (value) {
+                Resources().init(getLang(value));
+                setState(() {
+                  dropdownValue = value;
+                });
+              },
+            ),
+          ),
+        ];
+
+      default:
+        return [];
+    }
+  }
+
   Widget _floatingBtn() {
     switch (index) {
       case 0:
@@ -99,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.photo_camera,
               size: 30,
             ),
-            onPressed: () => _scan(ctx),
+            onPressed: () => HomeController().scan(ctx),
           ),
         );
 
@@ -113,34 +133,12 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.add,
               size: 30,
             ),
-            onPressed: () => _addMyCard(ctx),
+            onPressed: () => Router.sailor("/add"),
           ),
         );
     }
 
     return const SizedBox.shrink();
-  }
-
-  void _addMyCard(BuildContext context) {
-    Router.sailor("/add");
-  }
-
-  void _scan(BuildContext context) async {
-    var result = await BarcodeScanner.scan();
-    var json;
-    try {
-      json = jsonDecode(result.rawContent);
-    } catch (e) {
-      log(e.toString());
-      Scaffold.of(context)
-          .showSnackBar(SnackBar(content: Text(Resources.smthngWentWrong)));
-      return;
-    }
-    ContactCard card = ContactCard.fromJson(json);
-    Hive.box("contacts").add(card);
-    context.read<HomeProvider>().selectCard(card);
-    context.read<HomeProvider>().setMyCard(false);
-    Router.sailor("/contactDetail");
   }
 
   Widget _body() {

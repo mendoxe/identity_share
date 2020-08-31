@@ -4,7 +4,6 @@ import 'package:identity_share/model/contact.dart';
 import 'package:identity_share/model/contact_card.dart';
 import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/utils/router.dart';
-import 'package:identity_share/widgets/contact_pick_dialog.dart';
 import 'package:identity_share/widgets/form_field.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -83,25 +82,6 @@ class _AddCardState extends State<AddCard> {
                 hintText: Resources.snapchat,
                 controller: snapchatController,
               ),
-              // Container(
-              //   height: (contacts.length * 105).toDouble(),
-              //   child: ListView.builder(
-              //     itemCount: contacts.length,
-              //     itemBuilder: (context, index) => contacts[index],
-              //   ),
-              // ),
-              // RaisedButton.icon(
-              //   color: Theme.of(context).accentColor,
-              //   onPressed: () => newContact(context),
-              //   icon: Icon(Icons.add, color: Colors.white),
-              //   label: Text(
-              //     Resources.add,
-              //     style: TextStyle(
-              //       color: Colors.white,
-              //       fontSize: 16,
-              //     ),
-              //   ),
-              // ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 16.0),
                 child: RaisedButton(
@@ -121,110 +101,6 @@ class _AddCardState extends State<AddCard> {
       ),
     );
   }
-
-  // void newContact(BuildContext context) {
-  //   showDialog(
-  //     context: context,
-  //     child: ContactPickDialog(),
-  //   ).then((value) {
-  //     print(value);
-  //     switch (value) {
-  //       case "facebook":
-  //         setState(() {
-  //           contacts.add(
-  //             MFormField(
-  //               icon: Icon(MdiIcons.facebook),
-  //               hintText: Resources.facebook,
-  //               controller: facebookController,
-  //             ),
-  //           );
-  //         });
-  //         break;
-
-  //       case "instagram":
-  //         setState(() {
-  //           contacts.add(
-  //             MFormField(
-  //               icon: Icon(MdiIcons.instagram),
-  //               hintText: Resources.instagram,
-  //               controller: instagramController,
-  //             ),
-  //           );
-  //         });
-  //         break;
-
-  //       case "phone":
-  //         setState(() {
-  //           contacts.add(
-  //             MFormField(
-  //               icon: Icon(Icons.phone),
-  //               hintText: Resources.phone,
-  //               controller: phoneController,
-  //             ),
-  //           );
-  //         });
-  //         break;
-
-  //       case "email":
-  //         setState(() {
-  //           contacts.add(
-  //             MFormField(
-  //               icon: Icon(Icons.email),
-  //               hintText: Resources.email,
-  //               controller: emailController,
-  //             ),
-  //           );
-  //         });
-  //         break;
-
-  //       // case "other":
-  //       //   setState(() {
-  //       //     contacts.add(
-  //       //       Row(
-  //       //         children: [
-  //       //           MFormField(
-  //       //             hintText: Resources.other,
-  //       //             controller: TextEditingController(),
-  //       //           ),
-  //       //           MFormField(
-  //       //             hintText: Resources.other,
-  //       //             controller: TextEditingController(),
-  //       //           ),
-  //       //         ],
-  //       //       ),
-  //       //     );
-  //       //   });
-  //       // break;
-
-  //       case "twitter":
-  //         setState(() {
-  //           contacts.add(
-  //             MFormField(
-  //               icon: Icon(MdiIcons.twitter),
-  //               hintText: Resources.twitter,
-  //               controller: twitterController,
-  //             ),
-  //           );
-  //         });
-  //         break;
-
-  //       case "snapchat":
-  //         setState(() {
-  //           contacts.add(
-  //             MFormField(
-  //               icon: Icon(MdiIcons.snapchat),
-  //               hintText: Resources.snapchat,
-  //               controller: snapchatController,
-  //             ),
-  //           );
-  //         });
-  //         break;
-
-  //       default:
-  //         break;
-  //     }
-  //   });
-  // }
 
   void _submitted() {
     if (_formKey.currentState.validate()) {
