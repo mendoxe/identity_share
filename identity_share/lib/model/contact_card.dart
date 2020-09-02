@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:identity_share/model/contact.dart';
 import 'package:json_annotation/json_annotation.dart';

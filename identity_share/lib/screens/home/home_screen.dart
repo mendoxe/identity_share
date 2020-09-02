@@ -1,16 +1,8 @@
-import 'dart:convert';
-import 'dart:developer';
-
-import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:identity_share/controller/home_controller.dart';
-import 'package:identity_share/model/contact_card.dart';
-import 'package:identity_share/provider/home_provider.dart';
 import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/utils/router.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:provider/provider.dart';
 
 import 'components/contacts_page.dart';
 import 'components/profile_page.dart';

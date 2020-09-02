@@ -6,7 +6,6 @@ import 'package:identity_share/provider/home_provider.dart';
 import 'package:identity_share/utils/resources.dart';
 import 'package:identity_share/utils/router.dart';
 import 'package:provider/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
 import 'screens/home/home_screen.dart';
