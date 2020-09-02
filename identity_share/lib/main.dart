@@ -24,9 +24,10 @@ void main() async {
   await Hive.openBox("cards");
   await Hive.openBox("favorite");
   await Hive.openBox("preferences");
-  // Hive.deleteBoxFromDisk("contacts");
-  // Hive.deleteBoxFromDisk("cards");
-  // Hive.deleteBoxFromDisk("favorite");
+  // await Hive.deleteBoxFromDisk("contacts");
+  // await Hive.deleteBoxFromDisk("cards");
+  // await Hive.deleteBoxFromDisk("favorite");
+  // await Hive.deleteBoxFromDisk("preferences");
 
   Router.createRoutes();
   runApp(
@@ -58,7 +59,6 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Identity share',
       theme: ThemeData(
-        textTheme: GoogleFonts.nunitoTextTheme(),
         scaffoldBackgroundColor: Colors.grey[300],
         accentColor: Colors.deepOrange,
         primarySwatch: Colors.deepPurple,

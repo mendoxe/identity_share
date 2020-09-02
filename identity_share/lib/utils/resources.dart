@@ -29,6 +29,8 @@ class Resources {
   static String address;
   static String web;
   static String company;
+  static String moreInfo;
+  static String addNote;
 
   void init(Language lang) {
     Hive.box("preferences").put("lang", langToString(lang));
@@ -62,6 +64,8 @@ class Resources {
         address = "Adresa";
         web = "Web";
         company = "Společnost";
+        moreInfo = "Přidat další informace.";
+        addNote = "Přidat poznámku...";
         return;
 
       case Language.EN:
@@ -93,6 +97,8 @@ class Resources {
         address = "Address";
         web = "Web";
         company = "Company";
+        moreInfo = "Add additional information.";
+        addNote = "Add a note...";
         return;
     }
   }

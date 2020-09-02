@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:identity_share/controller/contact_detail_controller.dart';
+import 'package:identity_share/model/contact.dart';
 import 'package:identity_share/model/contact_card.dart';
 import 'package:identity_share/provider/home_provider.dart';
-import 'package:identity_share/screens/contact_detail/components/contact_holder.dart';
 import 'package:identity_share/utils/router.dart';
+import 'package:identity_share/widgets/note.dart';
 import 'package:provider/provider.dart';
 
 class ContactDetail extends StatefulWidget {
@@ -41,7 +43,11 @@ class _ContactDetailState extends State<ContactDetail> {
             ? [
                 IconButton(
                   icon: Icon(Icons.edit),
-                  onPressed: () => _edit(),
+                  onPressed: () => showDialog(
+                    context: context,
+                    child: Note(),
+                    barrierDismissible: false,
+                  ).then((value) => card.tag = value),
                 ),
               ]
             : [
@@ -56,7 +62,8 @@ class _ContactDetailState extends State<ContactDetail> {
                     : const SizedBox.shrink(),
                 IconButton(
                   icon: Icon(Icons.delete, color: Colors.white),
-                  onPressed: () => _delete(my),
+                  onPressed: () =>
+                      ContactDetailController().delete(my, index, fav),
                 ),
               ],
       ),
@@ -89,32 +96,19 @@ class _ContactDetailState extends State<ContactDetail> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: card.contacts.length,
-              itemBuilder: (context, index) =>
-                  ContactHolder(contact: card.contacts[index]),
-            ),
+                itemCount: card.contacts.length,
+                itemBuilder: (context, index) {
+                  Contact contact = card.contacts[index];
+                  return ListTile(
+                    leading: contact.getIcon(),
+                    title: Text(contact.value),
+                    subtitle: Text(contact.type),
+                  );
+                }),
           ),
         ],
       ),
     );
-  }
-
-  void _edit() {}
-
-  void _delete(bool my) {
-    if (my) {
-      Hive.box("cards").deleteAt(index);
-    } else {
-      Hive.box("contacts").deleteAt(index);
-    }
-    if (fav) {
-      if (Hive.box("cards").isEmpty) {
-        Hive.box("favorite").clear();
-      } else {
-        Hive.box("favorite").putAt(0, Hive.box("cards").getAt(0));
-      }
-    }
-    Router.sailor.pop();
   }
 
   void _fav(BuildContext context) {

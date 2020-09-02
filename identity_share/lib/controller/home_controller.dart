@@ -24,6 +24,7 @@ class HomeController {
       return;
     }
     ContactCard card = ContactCard.fromJson(json);
+    card.tag = null;
     Hive.box("contacts").add(card);
     context.read<HomeProvider>().selectCard(card);
     context.read<HomeProvider>().setMyCard(false);

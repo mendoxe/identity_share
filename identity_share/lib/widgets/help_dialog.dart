@@ -9,7 +9,7 @@ class HelpDialog extends StatelessWidget {
     return Dialog(
       child: Container(
         width: screenSize.width * 0.8,
-        height: 450,
+        height: 500,
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +33,7 @@ class HelpDialog extends StatelessWidget {
             _textHeadline("Dávej"),
             const SizedBox(height: 6.0),
             _textPoint(
-                "1. Vytvoř si vlastní profil (hvězdičkou\n označ právě používaný)"),
+                "1. Vytvoř si vlastní profil (hvězdičkou označ právě používaný)"),
             _textPoint("2. Ukaž QR kód nově poznané osobě"),
             const SizedBox(height: 32.0),
             _textHeadline("Získávej"),
@@ -42,7 +42,8 @@ class HelpDialog extends StatelessWidget {
               padding: const EdgeInsets.only(left: 32.0),
               child: Row(
                 children: [
-                  Text("1. Naskenuj QR kód tlačítkem"),
+                  Text("1. Naskenuj QR kód tlačítkem",
+                      style: TextStyle(fontSize: 16)),
                   const SizedBox(width: 4.0),
                   Icon(Icons.camera_alt),
                 ],
