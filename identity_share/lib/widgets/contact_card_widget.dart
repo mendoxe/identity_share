@@ -28,7 +28,6 @@ class ContactCardWidget extends StatelessWidget {
     bool fav =
         (context.watch<HomeProvider>().fav ?? Hive.box("favorite").getAt(0)) ==
             card;
-
     return Padding(
       padding: const EdgeInsets.only(top: 4.0, left: 4.0, right: 4.0),
       child: InkWell(
@@ -66,7 +65,7 @@ class ContactCardWidget extends StatelessWidget {
                         ),
                       ),
                     ),
-                    card.tag != ""
+                    (card.tag != "" && card.tag != null)
                         ? Padding(
                             padding:
                                 const EdgeInsets.only(right: 16.0, top: 6.0),
