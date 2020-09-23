@@ -33,7 +33,7 @@ class _ContactsPageState extends State<ContactsPage> {
                   return ContactCardWidget(
                     card: Hive.box("contacts").getAt(index - 1),
                     myCard: false,
-                    index: index,
+                    index: 0,
                   );
                 },
               )

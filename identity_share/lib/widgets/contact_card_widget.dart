@@ -20,14 +20,19 @@ class ContactCardWidget extends StatelessWidget {
   final bool myCard;
   final int index;
 
+  ContactCard getFav(BuildContext context) {
+    if (context.watch<HomeProvider>().fav != null)
+      return context.watch<HomeProvider>().fav;
+    if (Hive.box("favorite").isNotEmpty) return Hive.box("favorite").getAt(0);
+    return null;
+  }
+
   @override
   Widget build(BuildContext context) {
     int itemCount = 0;
     if (card.contacts.length == 1) itemCount = 1;
     if (card.contacts.length > 1) itemCount = 2;
-    bool fav =
-        (context.watch<HomeProvider>().fav ?? Hive.box("favorite").getAt(0)) ==
-            card;
+    bool fav = getFav(context) == card;
     return Padding(
       padding: const EdgeInsets.only(top: 4.0, left: 4.0, right: 4.0),
       child: InkWell(
